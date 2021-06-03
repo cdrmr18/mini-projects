@@ -12,3 +12,11 @@ const ageInDays = () => {
 const resetGame = () => {
     const results = document.getElementById('ageInDays').remove();
 }
+
+// Challenge 2
+
+const getCatImg = () => {
+    const img = document.createElement('img');
+    img.setAttribute('src', "https://media.giphy.com/media/Ub8XEam5vXbMY/giphy.gif");
+    
+}
