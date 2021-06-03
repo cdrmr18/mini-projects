@@ -10,6 +10,5 @@ const ageInDays = () => {
 }
 
 const resetGame = () => {
-    const results = document.getElementById('ageInDays');
-
+    const results = document.getElementById('ageInDays').remove();
 }
