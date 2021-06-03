@@ -14,9 +14,9 @@ const resetGame = () => {
 }
 
 // Challenge 2
-
-const getCatImg = () => {
+const getImg = () => {
     const img = document.createElement('img');
     img.setAttribute('src', "https://media.giphy.com/media/Ub8XEam5vXbMY/giphy.gif");
-    
+    const imgDisplay = document.getElementById('displayImage');
+    imgDisplay.appendChild(img);
 }
