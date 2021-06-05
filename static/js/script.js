@@ -27,12 +27,11 @@ const rpsGame = (yourChoice) => {
     const playerChoice = yourChoice.id;
     const botChoice = numberToChoice(randToRpsInt());
 
-    // let results = decideWinner(playerChoice, botChoice);
+    let results = decideWinner(playerChoice, botChoice);
     // let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
     // rpsDisplay(yourChioce.id, botChoice.id, message);
-    
-    console.log(botChoice)
-    
+
+    console.log(results)
 }
 
 const randToRpsInt = () => {
@@ -42,25 +41,33 @@ const numberToChoice = (number) => {
     return ['rock', 'paper', 'scissors'][number];
 }
 const decideWinner = (playerChoice, botChoice) => {
-
-}
-const finalMessage = (results) => {
-    const rock = document.getElementById('rock');
-    const paper = document.getElementById('paper');
-    const scissors = document.getElementById('scissors');
-
-    if(yourChoice === 'rock') {
-        paper.remove();
-        scissors.remove();
-    } else if (yourChoice === 'paper'){
-        rock.remove();
-        scissors.remove();
-    } else if (yourChoice === 'scissors'){
-        paper.remove();
-        rock.remove();
+    const rpsDb = {
+        "rock": {'scissors': 1, 'rock': 0.5, 'paper': 0},
+        "paper": {'rock': 1, 'paper': 0.5, 'scissors': 0},
+        "scissors": {'paper': 1, 'scissors': 0.5, 'rock': 0},
     }
+    
+    const yourScore = rpsDb[playerChoice][botChoice];
+    const botScore = rpsDb[botChoice][playerChoice];
+    return [yourScore, botScore];
+}
+// const finalMessage = (results) => {
+//     const rock = document.getElementById('rock');
+//     const paper = document.getElementById('paper');
+//     const scissors = document.getElementById('scissors');
 
-}
-const rpsDisplay = () => {
-    return 
-}
+//     if(yourChoice === 'rock') {
+//         paper.remove();
+//         scissors.remove();
+//     } else if (yourChoice === 'paper'){
+//         rock.remove();
+//         scissors.remove();
+//     } else if (yourChoice === 'scissors'){
+//         paper.remove();
+//         rock.remove();
+//     }
+
+// }
+// const rpsDisplay = () => {
+//     return 
+// }
