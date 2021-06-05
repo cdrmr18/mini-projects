@@ -28,7 +28,7 @@ const rpsGame = (yourChoice) => {
     const botChoice = numberToChoice(randToRpsInt());
 
     let results = decideWinner(playerChoice, botChoice);
-    // let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
+    let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
     // rpsDisplay(yourChioce.id, botChoice.id, message);
 
     console.log(results)
@@ -51,23 +51,28 @@ const decideWinner = (playerChoice, botChoice) => {
     const botScore = rpsDb[botChoice][playerChoice];
     return [yourScore, botScore];
 }
-// const finalMessage = (results) => {
-//     const rock = document.getElementById('rock');
-//     const paper = document.getElementById('paper');
-//     const scissors = document.getElementById('scissors');
-
-//     if(yourChoice === 'rock') {
-//         paper.remove();
-//         scissors.remove();
-//     } else if (yourChoice === 'paper'){
-//         rock.remove();
-//         scissors.remove();
-//     } else if (yourChoice === 'scissors'){
-//         paper.remove();
-//         rock.remove();
-//     }
-
-// }
+const finalMessage = (results) => { 
+    if(results[0] === 0){
+        return  {'message': 'You lost!', 'color': 'red'};
+    } else if (results[0] === 0.5){
+        return  {'message': 'You tied!', 'color': 'yellow'};
+    } else if (results[0] === 1){
+         return {'message': 'You won!', 'color': 'green'};
+    }
+}
 // const rpsDisplay = () => {
-//     return 
+//      const rock = document.getElementById('rock');
+    // const paper = document.getElementById('paper');
+    // const scissors = document.getElementById('scissors');
+
+    // if(yourChoice === 'rock') {
+    //     paper.remove();
+    //     scissors.remove();
+    // } else if (yourChoice === 'paper'){
+    //     rock.remove();
+    //     scissors.remove();
+    // } else if (yourChoice === 'scissors'){
+    //     paper.remove();
+    //     rock.remove();
+    // }
 // }
