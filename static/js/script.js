@@ -78,22 +78,30 @@ const rpsDisplay = (playerImgChoice, botImgChoice, finalMessage) => {
     const playerImgSrc = imagesDb[playerImgChoice];
     const botImgSrc = imagesDb[botImgChoice];
 
+    // create image and set attributes
     const playerImg = document.createElement('img')
     playerImg.setAttribute('src', playerImgSrc);
+    playerImg.className = 'playerImage';
 
     const botImg = document.createElement('img')
     botImg.setAttribute('src', botImgSrc);
+    botImg.className = 'botImage';
     
+    // create message ele and insert message text & style
     const resultMessage = document.createElement('h2')
+    resultMessage.className = "resultHeader";
+    resultMessage.style.color = finalMessage['color'];
     resultMessage.innerText = finalMessage.message
+    messageDiv.append(resultMessage);
 
+    // append images to parent divs
     playerDiv.appendChild(playerImg);
     botDiv.appendChild(botImg);
-    messageDiv.appendChild(resultMessage);
+    
 
+    // append divs in parent flex box div
     const rpsDiv = document.getElementById('flex-box-rps-div');
     rpsDiv.appendChild(playerDiv);
     rpsDiv.appendChild(messageDiv);
     rpsDiv.appendChild(botDiv);
-    
 }
