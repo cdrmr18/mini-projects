@@ -20,3 +20,6 @@ const getImg = () => {
     const imgDisplay = document.getElementById('displayImage');
     imgDisplay.appendChild(img);
 }
+
+// Challenege 3
+
