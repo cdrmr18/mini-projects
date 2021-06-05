@@ -152,3 +152,18 @@ const randomColor = () => {
         allButtons[i].classList.add(copyAllButtons[randomNum]);
     }
 }
+
+// Challenge 5 BLACKJACK
+const blackjackHit = () => {
+    
+}
+const blackjackStand= () => {
+    
+}
+const blackjackDeal = () => {
+    
+}
+
+document.querySelector('#hit-button').addEventListener('click', blackjackHit);
+document.querySelector('#stand-button').addEventListener('click', blackjackStand);
+document.querySelector('#deal-button').addEventListener('click', blackjackDeal);
