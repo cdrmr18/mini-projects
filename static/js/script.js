@@ -139,10 +139,16 @@ const buttonGreen = () => {
         allButtons[i].classList.add('btn-success');
     }
 }
-
 const buttonReset = () => {
     for (let i = 0; i < allButtons.length; i++) {
         allButtons[i].classList.remove(allButtons[i].classList[1]);
         allButtons[i].classList.add(copyAllButtons[i]);
+    }
+}
+const randomColor = () => {
+    for (let i = 0; i < allButtons.length; i++) {
+        const randomNum = Math.floor(Math.random() * allButtons.length)
+        allButtons[i].classList.remove(allButtons[i].classList[1]);
+        allButtons[i].classList.add(copyAllButtons[randomNum]);
     }
 }
