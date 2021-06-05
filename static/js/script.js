@@ -154,6 +154,21 @@ const randomColor = () => {
 }
 
 // Challenge 5 BLACKJACK
+const blackjackGame = {
+    'you': {
+        'scoreSpan': '#your-blackjack-result',
+        'div': '#player-box',
+        'score': 0
+    },
+    'dealer': {
+        'scoreSpan': '#dealer-blackjack-result',
+        'div': '#dealer-box',
+        'score': 0
+    }
+}
+const YOU = blackjackGame['you'];
+const DEALER = blackjackGame['dealer'];
+
 const blackjackHit = () => {
     
 }
@@ -163,7 +178,7 @@ const blackjackStand= () => {
 const blackjackDeal = () => {
     
 }
-
+// button event listeners
 document.querySelector('#hit-button').addEventListener('click', blackjackHit);
 document.querySelector('#stand-button').addEventListener('click', blackjackStand);
 document.querySelector('#deal-button').addEventListener('click', blackjackDeal);
