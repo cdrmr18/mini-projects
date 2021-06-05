@@ -17,7 +17,8 @@
   padding: 10px;
   align-items: center;
 }
-img {
+.flex-box-container-two img {
   width: 150px;
   margin: 10px;
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.4);
 }
