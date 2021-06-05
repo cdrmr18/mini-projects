@@ -1,7 +1,8 @@
 .container-one,
 .container-two,
 .container-three,
-.container-four {
+.container-four,
+.container-five {
   margin: 0 auto;
   text-align: center;
   width: 75%;
@@ -9,7 +10,9 @@
 .flex-box-container-one,
 .flex-box-container-two,
 .flex-box-container-three,
-.flex-box-container-four {
+.flex-box-container-four,
+.flex-blackjack-row-one,
+.game-tally-flexbox-row-three {
   display: flex;
   padding: 10px;
   justify-content: space-around;
@@ -46,4 +49,15 @@ img.botImage:hover {
 .btn,
 .container-four form {
   margin: 8px;
+}
+.game-board {
+  background-image: url("https://thumbs.dreamstime.com/b/poker-chips-green-felt-casino-table-gambling-poker-blackja-blackjack-roulette-theme-background-91253807.jpg");
+  background-position: cover;
+}
+.flex-blackjack-row-one {
+  display: flex;
+}
+table,
+tr {
+  border: 1px solid black;
 }
