@@ -200,10 +200,12 @@ const blackjackDeal = () => {
 
 // helper functions
 const showCard = (activePlayer, card) => {
-    let cardImage = document.createElement('img');
-    cardImage.setAttribute('src', `static/images/${card}.png`)
-    document.querySelector(activePlayer['div']).append(cardImage);
-    hitSound.play();
+    if(activePlayer['score'] <= 21) {
+        let cardImage = document.createElement('img');
+        cardImage.setAttribute('src', `static/images/${card}.png`)
+        document.querySelector(activePlayer['div']).append(cardImage);
+        hitSound.play();
+    }
 }
 const randomCard = () => {
     let randomIndex = Math.floor(Math.random() * 13);
@@ -223,7 +225,12 @@ const addToScore = (card, activePlayer) => {
 }
 
 const displayScore = (activePlayer) => {
-    document.querySelector(activePlayer['scoreSpan']).innerText = activePlayer['score'];
+    if(activePlayer['score'] > 21) {
+        document.querySelector(activePlayer['scoreSpan']).innerText = 'BUST!';
+        document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
+    } else {
+        document.querySelector(activePlayer['scoreSpan']).innerText = activePlayer['score'];
+    }
 }
 
 // button event listeners
