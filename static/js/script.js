@@ -29,9 +29,7 @@ const rpsGame = (yourChoice) => {
 
     let results = decideWinner(playerChoice, botChoice);
     let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
-    // rpsDisplay(yourChioce.id, botChoice.id, message);
-
-    console.log(results)
+    rpsDisplay(yourChoice.id, botChoice, message);
 }
 
 const randToRpsInt = () => {
@@ -51,28 +49,51 @@ const decideWinner = (playerChoice, botChoice) => {
     const botScore = rpsDb[botChoice][playerChoice];
     return [yourScore, botScore];
 }
-const finalMessage = (results) => { 
-    if(results[0] === 0){
+const finalMessage = ([yourScore, botScore]) => { 
+    if(yourScore === 0){
         return  {'message': 'You lost!', 'color': 'red'};
-    } else if (results[0] === 0.5){
+    } else if (yourScore === 0.5){
         return  {'message': 'You tied!', 'color': 'yellow'};
-    } else if (results[0] === 1){
+    } else if (yourScore === 1){
          return {'message': 'You won!', 'color': 'green'};
     }
 }
-// const rpsDisplay = () => {
-//      const rock = document.getElementById('rock');
-    // const paper = document.getElementById('paper');
-    // const scissors = document.getElementById('scissors');
+const rpsDisplay = (playerImgChoice, botImgChoice, finalMessage) => {
+    const imagesDb = {
+        'rock': document.getElementById('rock').src,
+        'paper': document.getElementById('paper').src,
+        'scissors':  document.getElementById('scissors').src
+    }
+    
+    // remove images
+    document.getElementById('rock').remove();
+    document.getElementById('paper').remove();
+    document.getElementById('scissors').remove();
 
-    // if(yourChoice === 'rock') {
-    //     paper.remove();
-    //     scissors.remove();
-    // } else if (yourChoice === 'paper'){
-    //     rock.remove();
-    //     scissors.remove();
-    // } else if (yourChoice === 'scissors'){
-    //     paper.remove();
-    //     rock.remove();
-    // }
-// }
+    const playerDiv = document.createElement('div');
+    const botDiv = document.createElement('div');
+    const messageDiv = document.createElement('div');
+
+    // display chosen images and message
+    const playerImgSrc = imagesDb[playerImgChoice];
+    const botImgSrc = imagesDb[botImgChoice];
+
+    const playerImg = document.createElement('img')
+    playerImg.setAttribute('src', playerImgSrc);
+
+    const botImg = document.createElement('img')
+    botImg.setAttribute('src', botImgSrc);
+    
+    const resultMessage = document.createElement('h2')
+    resultMessage.innerText = finalMessage.message
+
+    playerDiv.appendChild(playerImg);
+    botDiv.appendChild(botImg);
+    messageDiv.appendChild(resultMessage);
+
+    const rpsDiv = document.getElementById('flex-box-rps-div');
+    rpsDiv.appendChild(playerDiv);
+    rpsDiv.appendChild(messageDiv);
+    rpsDiv.appendChild(botDiv);
+    
+}
