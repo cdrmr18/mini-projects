@@ -112,7 +112,7 @@ const allButtons = document.getElementsByTagName('button');
 
 const copyAllButtons = [];
 for (let i = 0; i < allButtons.length; i++) {
-    copyAllButtons.push(allButtons[i]);
+    copyAllButtons.push(allButtons[i].classList[1]);
 }
 
 const buttonColorChange = (selectObj) => {
@@ -122,7 +122,19 @@ const buttonColorChange = (selectObj) => {
         buttonGreen();
     } else if(selectObj.value === 'reset') {
         buttonReset();
-    } else if() {
+    } else if(selectObj.value === 'random') {
         randomColor();
+    }
+}
+
+
+const buttonRed = () => {
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].classList.remove("btn-danger");
+    }
+}
+const buttonGreen = () => {
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].classList.remove("btn-success");
     }
 }
