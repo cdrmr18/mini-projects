@@ -169,8 +169,9 @@ const blackjackGame = {
 const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
 
+const hitSound = new Audio('static/sounds/swish.m4a')
 const blackjackHit = () => {
-    
+    showCard();
 }
 const blackjackStand= () => {
     
@@ -178,6 +179,15 @@ const blackjackStand= () => {
 const blackjackDeal = () => {
     
 }
+
+
+const showCard = (activePlayer) => {
+    let cardImage = document.createElement('img');
+    cardImage.setAttribute('src', 'static/images/K.png')
+    document.querySelector(activePlayer['div']).append(cardImage);
+    hitSound.play();
+}
+
 // button event listeners
 document.querySelector('#hit-button').addEventListener('click', blackjackHit);
 document.querySelector('#stand-button').addEventListener('click', blackjackStand);

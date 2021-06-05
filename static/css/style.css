@@ -63,6 +63,8 @@ img.botImage:hover {
 }
 .flex-blackjack-row-one img {
   height: 25%;
+  margin: 8px;
+  border-radius: 4px;
 }
 
 table,
