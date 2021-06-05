@@ -127,14 +127,22 @@ const buttonColorChange = (selectObj) => {
     }
 }
 
-
 const buttonRed = () => {
     for (let i = 0; i < allButtons.length; i++) {
-        allButtons[i].classList.remove("btn-danger");
+        allButtons[i].classList.remove(allButtons[i].classList[1]);
+        allButtons[i].classList.add('btn-danger');
     }
 }
 const buttonGreen = () => {
     for (let i = 0; i < allButtons.length; i++) {
-        allButtons[i].classList.remove("btn-success");
+        allButtons[i].classList.remove(allButtons[i].classList[1]);
+        allButtons[i].classList.add('btn-success');
+    }
+}
+
+const buttonReset = () => {
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].classList.remove(allButtons[i].classList[1]);
+        allButtons[i].classList.add(copyAllButtons[i]);
     }
 }

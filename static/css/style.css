@@ -43,3 +43,7 @@ img.botImage:hover {
   padding: 30px;
   font-size: 60px;
 }
+.btn,
+.container-four form {
+  margin: 8px;
+}
