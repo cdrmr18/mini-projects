@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/css/style.css">
     <title>JS Mini Projects</title>
 </head>
-<body>
+<body class="mb-4">
     <div class="container-one mt-4">
         <h2>Challenge 1: Your Age in Days</h2>
         <div class="flex-box-container-one">
@@ -44,8 +44,26 @@
             <img src="static/images/paper.jpeg" alt="paper" id="paper" onClick="rpsGame(this)">
             <img src="static/images/scissors.jpeg" alt="scissors" id="scissors" onClick="rpsGame(this)">
         </div>
+        <button class="btn btn-warning" onClick="window.location.reload();">Reset Game</button>
     </div>
 
+    <div class="container-four mt-4">
+        <h2>Challenge 4: Change Button Colors</h2>
+        <div class="flex-box-container-four">
+            <form action="" class="me-2">
+                <select name="backdrop" id="backdrop" onChange="buttonColorChange(this)">
+                    <option value="random">random</option>
+                    <option value="red">red</option>
+                    <option value="green">green</option>
+                    <option value="reset">reset</option>
+                </select>
+            </form>
+            <button class="btn btn-primary me-2">Whee!</button>
+            <button class="btn btn-danger me-2">Yahoo!</button>
+            <button class="btn btn-warning me-2">Google!</button>
+            <button class="btn btn-success me-2">Facebook!</button>
+        </div>
+    </div>
 
     <script src="static/js/script.js"></script>
 </body>

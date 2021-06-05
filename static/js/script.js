@@ -53,7 +53,7 @@ const finalMessage = ([yourScore, botScore]) => {
     if(yourScore === 0){
         return  {'message': 'You lost!', 'color': 'red'};
     } else if (yourScore === 0.5){
-        return  {'message': 'You tied!', 'color': 'yellow'};
+        return  {'message': 'You tied!', 'color': 'orange'};
     } else if (yourScore === 1){
          return {'message': 'You won!', 'color': 'green'};
     }
@@ -104,4 +104,25 @@ const rpsDisplay = (playerImgChoice, botImgChoice, finalMessage) => {
     rpsDiv.appendChild(playerDiv);
     rpsDiv.appendChild(messageDiv);
     rpsDiv.appendChild(botDiv);
+}
+
+
+// Challenge 4
+const allButtons = document.getElementsByTagName('button');
+
+const copyAllButtons = [];
+for (let i = 0; i < allButtons.length; i++) {
+    copyAllButtons.push(allButtons[i]);
+}
+
+const buttonColorChange = (selectObj) => {
+    if(selectObj.value === 'red') {
+        buttonRed();
+    } else if(selectObj.value === 'green') {
+        buttonGreen();
+    } else if(selectObj.value === 'reset') {
+        buttonReset();
+    } else if() {
+        randomColor();
+    }
 }
