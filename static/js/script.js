@@ -23,3 +23,40 @@ const getImg = () => {
 
 // Challenege 3
 
+const rpsGame = (yourChoice) => {
+    const playerChoice, botChoice;
+    // playerChoice = yourChoice.id;
+    // botChoice = ;
+    // let results = decideWinner(playerChoice, botChoice);
+    // let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
+    // rpsDisplay(yourChioce.id, botChoice.id, message);
+    
+
+    
+}
+const randToRpsInt = () => {
+
+}
+const decideWinner = (playerChoice, botChoice) => {
+
+}
+const finalMessage = (results) => {
+    const rock = document.getElementById('rock');
+    const paper = document.getElementById('paper');
+    const scissors = document.getElementById('scissors');
+
+    if(yourChoice === 'rock') {
+        paper.remove();
+        scissors.remove();
+    } else if (yourChoice === 'paper'){
+        rock.remove();
+        scissors.remove();
+    } else if (yourChoice === 'scissors'){
+        paper.remove();
+        rock.remove();
+    }
+
+}
+const rpsDisplay = (yourChioce.id, botChoice.id, message) => {
+
+}
