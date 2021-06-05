@@ -24,18 +24,22 @@ const getImg = () => {
 // Challenege 3
 
 const rpsGame = (yourChoice) => {
-    const playerChoice, botChoice;
-    // playerChoice = yourChoice.id;
-    // botChoice = ;
+    const playerChoice = yourChoice.id;
+    const botChoice = numberToChoice(randToRpsInt());
+
     // let results = decideWinner(playerChoice, botChoice);
     // let message = finalMessage(results); // {'message': 'You won!', 'color': 'green'}
     // rpsDisplay(yourChioce.id, botChoice.id, message);
     
-
+    console.log(botChoice)
     
 }
-const randToRpsInt = () => {
 
+const randToRpsInt = () => {
+    return Math.floor(Math.random() * 3);
+}
+const numberToChoice = (number) => {
+    return ['rock', 'paper', 'scissors'][number];
 }
 const decideWinner = (playerChoice, botChoice) => {
 
@@ -57,6 +61,6 @@ const finalMessage = (results) => {
     }
 
 }
-const rpsDisplay = (yourChioce.id, botChoice.id, message) => {
-
+const rpsDisplay = () => {
+    return 
 }
