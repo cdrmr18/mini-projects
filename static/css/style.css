@@ -7,7 +7,7 @@
 }
 .flex-box-container-one,
 .flex-box-container-two,
-.flex-box-container-rps {
+.flex-box-container-three {
   border: 1px solid black;
   display: flex;
   padding: 10px;
@@ -24,7 +24,11 @@
   margin: 10px;
   box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.4);
 }
-.flex-box-container-rps img {
+.flex-box-container-three img {
   width: 150px;
   height: 150px;
+  margin: 10px;
+}
+.flex-box-container-three img:hover {
+  box-shadow: 0px 10px 50px rgba(66, 69, 218, 0.4);
 }
