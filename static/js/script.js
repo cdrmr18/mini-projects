@@ -175,7 +175,9 @@ const blackjackGame = {
 const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
 
-const hitSound = new Audio('static/sounds/swish.m4a')
+const hitSound = new Audio('static/sounds/swish.m4a');
+const winSound = new Audio('static/sounds/cash.mp3');
+const lossSound = new Audio('static/sounds/aww.mp3');
 
 const blackjackHit = () => {
     let card = randomCard();
@@ -184,6 +186,7 @@ const blackjackHit = () => {
     displayScore(YOU);
 }
 const blackjackDeal = () => {
+    showResults(computeWinner());
     const playerImages = document.querySelector(YOU['div']).querySelectorAll('img');
     const dealerImages = document.querySelector(DEALER['div']).querySelectorAll('img');
 
@@ -209,6 +212,7 @@ const dealerLogic = () => {
 const blackjackStand= () => {
     dealerLogic();
 }
+
 // helper functions
 const showCard = (activePlayer, card) => {
     if(activePlayer['score'] <= 21) {
@@ -242,6 +246,42 @@ const displayScore = (activePlayer) => {
     } else {
         document.querySelector(activePlayer['scoreSpan']).innerText = activePlayer['score'];
     }
+}
+const computeWinner = () => {
+    let winner;
+    if (YOU['score'] <= 21) {
+        if (YOU['score'] > DEALER['score'] || DEALER['score'] > 21) {
+            winner = YOU;
+        } else if (YOU['score'] < DEALER['score']) {
+            winner = DEALER;
+        } else if (YOU['score'] === DEALER['score']) {
+        }
+    } else if (YOU['score'] > 21 && DEALER['score'] <= 21) {
+        winner = DEALER;
+    } else if (YOU['score'] > 21 && DEALER['score'] > 21) {
+    }
+    console.log('Winner is ', winner);
+    return winner;
+}
+const showResults = (winner) => {
+    let message;
+    let messageColor;
+
+    if (winner === YOU) {
+        message = "You won!";
+        messageColor = 'green';
+        winSound.play();
+    } else if (winner == DEALER) {
+        message = "You lost!";
+        messageColor = 'red';
+        lossSound.play();
+    } else {
+        message = "You drew!";
+        messageColor = 'yellow';
+    }
+
+    document.querySelector('#blackjack-results').innerText = message;
+    document.querySelector('#blackjack-results').style.color = messageColor;
 }
 
 // button event listeners
