@@ -170,7 +170,10 @@ const blackjackGame = {
         'score': 0
     },
     'cards': ['2','3','4','5','6','7','8','9','10','K', 'J', 'Q','A'],
-    'cardsMap': {'2': 2, '3': 3,'4': 4,'5': 5,'6': 6,'7': 7,'8': 8,'9': 9,'10': 10,'K': 10, 'J':10, 'Q':10, 'A': [1, 11] }
+    'cardsMap': {'2': 2, '3': 3,'4': 4,'5': 5,'6': 6,'7': 7,'8': 8,'9': 9,'10': 10,'K': 10, 'J':10, 'Q':10, 'A': [1, 11] },
+    'wins': 0,
+    'losses': 0,
+    'draws': 0,
 }
 const YOU = blackjackGame['you'];
 const DEALER = blackjackGame['dealer'];
@@ -186,7 +189,6 @@ const blackjackHit = () => {
     displayScore(YOU);
 }
 const blackjackDeal = () => {
-    showResults(computeWinner());
     const playerImages = document.querySelector(YOU['div']).querySelectorAll('img');
     const dealerImages = document.querySelector(DEALER['div']).querySelectorAll('img');
 
@@ -200,14 +202,22 @@ const blackjackDeal = () => {
     DEALER['score'] = 0;
     document.querySelector(YOU['scoreSpan']).innerText = YOU['score'];
     document.querySelector(DEALER['scoreSpan']).innerText = DEALER['score'];
+    document.querySelector('#blackjack-results').innerText = "Let's play";
+    document.querySelector('#blackjack-results').style.color = 'white';
     document.querySelector(YOU['scoreSpan']).style.color = 'white';
     document.querySelector(DEALER['scoreSpan']).style.color = 'white';
 }
 const dealerLogic = () => {
-    let card = randomCard();
-    showCard(DEALER, card);
-    addToScore(card, DEALER);
-    displayScore(DEALER);
+    while (DEALER['score'] <= 15) {
+        let card = randomCard();
+        showCard(DEALER, card);
+        addToScore(card, DEALER);
+        displayScore(DEALER);
+    }
+
+    if (DEALER['score'] > 15) {
+        showResults(computeWinner());
+    }
 }
 const blackjackStand= () => {
     dealerLogic();
@@ -242,6 +252,9 @@ const addToScore = (card, activePlayer) => {
 const displayScore = (activePlayer) => {
     if(activePlayer['score'] > 21) {
         document.querySelector(activePlayer['scoreSpan']).innerText = 'BUST!';
+        if(activePlayer === YOU) {
+            lossSound.play();
+        }
         document.querySelector(activePlayer['scoreSpan']).style.color = 'red';
     } else {
         document.querySelector(activePlayer['scoreSpan']).innerText = activePlayer['score'];
@@ -250,17 +263,22 @@ const displayScore = (activePlayer) => {
 const computeWinner = () => {
     let winner;
     if (YOU['score'] <= 21) {
-        if (YOU['score'] > DEALER['score'] || DEALER['score'] > 21) {
+        if (YOU['score'] > DEALER['score'] || DEALER['score'] > 21) {   
+            blackjackGame['wins']++;
             winner = YOU;
         } else if (YOU['score'] < DEALER['score']) {
+            blackjackGame['losses']++;
             winner = DEALER;
         } else if (YOU['score'] === DEALER['score']) {
+            blackjackGame['draws']++;
         }
-    } else if (YOU['score'] > 21 && DEALER['score'] <= 21) {
+    } else if (YOU['score'] > 21 && DEALER['score'] <= 21) { 
+        blackjackGame['losses']++;
         winner = DEALER;
-    } else if (YOU['score'] > 21 && DEALER['score'] > 21) {
+    } else if (YOU['score'] > 21 && DEALER['score'] > 21) {    
+        blackjackGame['draws']++;
     }
-    console.log('Winner is ', winner);
+   
     return winner;
 }
 const showResults = (winner) => {
@@ -268,21 +286,25 @@ const showResults = (winner) => {
     let messageColor;
 
     if (winner === YOU) {
+        document.querySelector('#wins').innerText = blackjackGame['wins'];
         message = "You won!";
         messageColor = 'green';
         winSound.play();
     } else if (winner == DEALER) {
+        document.querySelector('#losses').innerText = blackjackGame['losses'];
         message = "You lost!";
         messageColor = 'red';
         lossSound.play();
     } else {
+        document.querySelector('#draws').innerText = blackjackGame['draws'];
         message = "You drew!";
-        messageColor = 'yellow';
+        messageColor = 'orange';
     }
 
     document.querySelector('#blackjack-results').innerText = message;
     document.querySelector('#blackjack-results').style.color = messageColor;
 }
+
 
 // button event listeners
 document.querySelector('#hit-button').addEventListener('click', blackjackHit);
