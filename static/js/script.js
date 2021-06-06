@@ -153,6 +153,10 @@ const randomColor = () => {
     }
 }
 
+
+
+
+
 // Challenge 5 BLACKJACK
 const blackjackGame = {
     'you': {
@@ -179,9 +183,6 @@ const blackjackHit = () => {
     addToScore(card, YOU);
     displayScore(YOU);
 }
-// const blackjackStand= () => {
-    
-// }
 const blackjackDeal = () => {
     const playerImages = document.querySelector(YOU['div']).querySelectorAll('img');
     const dealerImages = document.querySelector(DEALER['div']).querySelectorAll('img');
@@ -196,8 +197,18 @@ const blackjackDeal = () => {
     DEALER['score'] = 0;
     document.querySelector(YOU['scoreSpan']).innerText = YOU['score'];
     document.querySelector(DEALER['scoreSpan']).innerText = DEALER['score'];
+    document.querySelector(YOU['scoreSpan']).style.color = 'white';
+    document.querySelector(DEALER['scoreSpan']).style.color = 'white';
 }
-
+const dealerLogic = () => {
+    let card = randomCard();
+    showCard(DEALER, card);
+    addToScore(card, DEALER);
+    displayScore(DEALER);
+}
+const blackjackStand= () => {
+    dealerLogic();
+}
 // helper functions
 const showCard = (activePlayer, card) => {
     if(activePlayer['score'] <= 21) {
@@ -235,5 +246,5 @@ const displayScore = (activePlayer) => {
 
 // button event listeners
 document.querySelector('#hit-button').addEventListener('click', blackjackHit);
-// document.querySelector('#stand-button').addEventListener('click', blackjackStand);
+document.querySelector('#stand-button').addEventListener('click', blackjackStand);
 document.querySelector('#deal-button').addEventListener('click', blackjackDeal);
