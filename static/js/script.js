@@ -223,19 +223,24 @@ const blackjackDeal = () => {
         blackjackGame['turnsOver' ] = true;
     }
 }
-const dealerLogic = () => {
+const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+const dealerLogic =  async () => {
     blackjackGame['isStand' ] = true;
-    while (DEALER['score'] <= 15) {
+
+    while (DEALER['score'] <= 15 && blackjackGame['isStand'] === true) {
         let card = randomCard();
         showCard(DEALER, card);
         addToScore(card, DEALER);
         displayScore(DEALER);
+        await sleep(1000);
     }
-
-    if (DEALER['score'] > 15) {
-        blackjackGame['turnsOver' ] = true;
-        showResults(computeWinner());
-    }
+  
+    blackjackGame['turnsOver' ] = true;
+    showResults(computeWinner());
+    
 }
 const blackjackStand= () => {
     if (blackjackGame['turnsOver' ] === false) {
